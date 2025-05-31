@@ -1,0 +1,109 @@
+// File: mainproject/backend/prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// ─── Account Type Enum ─────────────────────────────────────────
+enum AccountType {
+  PERSONAL
+  BUSINESS
+}
+
+/// ─── User model ─────────────────────────────────────────
+model User {
+  id          Int         @id @default(autoincrement())
+  email       String?     @unique
+  wallet      String?     @unique
+  accountType AccountType @default(PERSONAL)
+  createdAt   DateTime    @default(now())
+  role        String?     @default("member") // 'admin' or 'member'
+
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId Int?
+
+  messages  Message[]
+  feedbacks Feedback[]
+  reports   Report[]
+  botRatings BotRating[]
+  botHires   BotHire[]
+}
+
+/// ─── Organization model ─────────────────────────────────────────
+model Organization {
+  id              Int      @id @default(autoincrement())
+  name            String
+  registrationKey String   @unique
+  createdAt       DateTime @default(now())
+
+  users User[] // one-to-many: org → users
+}
+
+/// ─── Message model ──────────────────────────────────────
+model Message {
+  id        Int      @id @default(autoincrement())
+  text      String
+  from      String // "user" or "bot"
+  createdAt DateTime @default(now())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+/// ─── Feedback model ─────────────────────────────────────
+model Feedback {
+  id        Int      @id @default(autoincrement())
+  message   String // the bot message text
+  feedback  String // "yes" or "no"
+  createdAt DateTime @default(now())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+/// ─── Report model ──────────────────────────────────────
+model Report {
+  id                  Int      @id @default(autoincrement())
+  messageText         String // the exact bot message being reported
+  conversationSnippet String // JSON-stringified snippet of “from/text” pairs
+  createdAt           DateTime @default(now())
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Bot {
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String    // e.g., Support, Trainer, DataEntry
+  description String
+  averageRating Float   @default(0)
+  createdAt   DateTime  @default(now())
+
+  ratings     BotRating[]
+  hires       BotHire[]
+}
+
+model BotRating {
+  id      Int     @id @default(autoincrement())
+  bot     Bot     @relation(fields: [botId], references: [id])
+  botId   Int
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  score   Int     // 1–5
+  createdAt DateTime @default(now())
+}
+
+model BotHire {
+  id      Int     @id @default(autoincrement())
+  bot     Bot     @relation(fields: [botId], references: [id])
+  botId   Int
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int
+  hiredAt DateTime @default(now())
+}

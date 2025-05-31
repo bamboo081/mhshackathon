@@ -1,0 +1,22 @@
+{
+  "businessName": "Urban Food Alliance",
+  "products": [
+    {
+      "name": "Organic Vegetable Box",
+      "description": "A weekly box of fresh organic vegetables.",
+      "price": "$25"
+    },
+    {
+      "name": "Farm Fresh Eggs",
+      "description": "Dozen cage-free farm fresh eggs.",
+      "price": "$6"
+    }
+  ],
+  "policies": {
+    "returns": "Returns accepted within 7 days with receipt.",
+    "shipping": "Free shipping on orders over $50."
+  },
+  "contact": {
+    "email": "support@urbanfood.org"
+  }
+}

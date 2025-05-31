@@ -1,0 +1,22 @@
+{
+  "businessName": "EcoFresh Supplies",
+  "products": [
+    {
+      "name": "EcoFresh Paper Towels",
+      "description": "100% recycled paper towels.",
+      "price": "$4.99"
+    },
+    {
+      "name": "Biodegradable Soap",
+      "description": "Organic hand soap, citrus scented.",
+      "price": "$3.49"
+    }
+  ],
+  "policies": {
+    "returns": "Returns accepted within 30 days with receipt.",
+    "shipping": "Ships within 2 business days via UPS."
+  },
+  "contact": {
+    "email": "support@ecofreshsupplies.com"
+  }
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "timestamp": "2025-05-31T09:33:15.961Z",
+    "user": {
+      "type": "email",
+      "email": "diddy@diddy.om"
+    },
+    "messageId": 1748683943408.1284,
+    "messageText": "I'm here to help you with any questions you may have about Urban Food Alliance. Feel free to ask about our products, policies, or anything else related to our business.",
+    "conversationSnippet": [
+      {
+        "from": "bot",
+        "text": "👋 Hi there! Ask me anything about our business."
+      },
+      {
+        "from": "user",
+        "text": "pee pee"
+      },
+      {
+        "from": "bot",
+        "text": "I'm here to help you with any questions you may have about Urban Food Alliance. Feel free to ask about our products, policies, or anything else related to our business."
+      }
+    ]
+  },
+  {
+    "timestamp": "2025-05-31T09:33:20.797Z",
+    "user": {
+      "type": "email",
+      "email": "diddy@diddy.om"
+    },
+    "messageId": 1748683929869,
+    "messageText": "👋 Hi there! Ask me anything about our business.",
+    "conversationSnippet": [
+      {
+        "from": "bot",
+        "text": "👋 Hi there! Ask me anything about our business."
+      },
+      {
+        "from": "user",
+        "text": "pee pee"
+      },
+      {
+        "from": "bot",
+        "text": "I'm here to help you with any questions you may have about Urban Food Alliance. Feel free to ask about our products, policies, or anything else related to our business."
+      }
+    ]
+  }
+]
