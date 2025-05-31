@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
 
     res.json({ status: "created", registrationKey });
   } catch (err) {
-    console.error("❌ register-org error:", err);
+    console.error("register-org error:", err);
     res.status(500).json({ error: "Failed to create org" });
   }
 });

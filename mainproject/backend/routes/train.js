@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
     res.json({ prompt: fewShotPrompt });
   } catch (err) {
-    console.error("❌ Training prompt error:", err);
+    console.error("Training prompt error:", err);
     res.status(500).json({ error: "Training failed" });
   }
 });

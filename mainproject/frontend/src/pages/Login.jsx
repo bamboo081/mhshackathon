@@ -33,7 +33,8 @@ export default function Login() {
       const { userId, accountType } = res.data;
       localStorage.setItem("userId", userId);
       localStorage.setItem("accountType", accountType);
-
+      localStorage.setItem("email", email); // Add this line
+      localStorage.setItem("userEmail", email);
       if (accountType === "BUSINESS") {
         navigate("/dashboard/org");
       } else {

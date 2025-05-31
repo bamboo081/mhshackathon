@@ -65,7 +65,7 @@ router.post("/", async (req, res) => {
 
     res.json({ answer });
   } catch (err) {
-    console.error("❌ Chat error:", err);
+    console.error("Chat didn't work:", err);
     res.status(500).json({ error: "Chat failed" });
   }
 });

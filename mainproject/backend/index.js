@@ -20,7 +20,7 @@ import marketplaceRouter from "./routes/marketplace.js";
 import botsRoute from "./routes/bots.js";
 import loginRoute from "./routes/login.js";
 import adminDashboardRoute from "./routes/admin-dashboard.js";
-import orgInfoRoute from "./routes/orgInfo.js";
+import orgInfoRoute from "./routes/org-info.js";
 
 
 dotenv.config();
@@ -43,20 +43,19 @@ const prisma = new PrismaClient();
 // ──────────────── Middleware ────────────────
 app.use(cors());
 app.use(express.json());
-app.use("/api", orgRoute);
+app.use("/api", orgInfoRoute);
 app.use("/api/marketplace", marketplaceRouter);
 
 // Bot training
 import trainRoute from "./routes/train.js";
 app.use("/api/train", trainRoute);
-app.use("/api", ragRouter);
 app.use("/api/register", registerRoute);
 app.use("/api/register-org", registerOrgRoute);
 app.use("/api/join-org", joinOrgRoute);
 app.use("/api/bots", botsRoute);
 app.use("/api/login", loginRoute);
 app.use("/api/admin-dashboard", adminDashboardRoute);
-app.use("/api/org/info", orgInfoRoute);
+app.use("/api/org-info", orgInfoRoute);
 
 // ──────────────── Load Knowledge Base ────────────────
 const knowledgePath = "../knowledgeBase.json";

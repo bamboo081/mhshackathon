@@ -1,11 +1,12 @@
-// routes/admin-dashboard.js
+// routes/org-info.js
 import express from "express";
 import prisma from "../prisma/client.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const { email } = req.query;
+router.post("/", async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ error: "Missing email" });
 
   try {
     const user = await prisma.user.findUnique({
@@ -13,36 +14,31 @@ router.get("/", async (req, res) => {
       include: { organization: true },
     });
 
-    if (!user || user.accountType !== "BUSINESS") {
-      return res.status(403).json({ error: "Unauthorized" });
+    if (!user || !user.organizationId) {
+      return res.status(404).json({ error: "User or organization not found" });
     }
+
+    const org = await prisma.organization.findUnique({
+      where: { id: user.organizationId },
+    });
 
     const users = await prisma.user.findMany({
       where: { organizationId: user.organizationId },
       select: {
         id: true,
         email: true,
+        wallet: true,
         role: true,
       },
     });
 
-    const bots = await prisma.botHire.findMany({
-      where: {
-        user: {
-          organizationId: user.organizationId,
-        },
-      },
-      include: {
-        bot: true,
-        user: true,
-      },
-    });
-
-    res.json({ users, bots });
+    res.json({ org, users });
   } catch (err) {
-    console.error("Admin dashboard error:", err);
+    console.error("org-info error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
 
 export default router;
+
+

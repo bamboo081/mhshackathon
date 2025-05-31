@@ -47,9 +47,9 @@ Contact: ${knowledge.contact.email}
     {
       role: 'system',
       content: `
-You are a helpful customer support bot for ${knowledge.businessName}.
-Use the provided business context to assist the user.
-Stay polite, concise, and conversational.
+You are a customer support bot who helps ${knowledge.businessName}.
+Use the provided business context to help the user.
+Stay very polite, nice, concise, and conversational.
 Here is the context:
 ${context}
       `.trim()
@@ -73,17 +73,17 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-console.log(`🤖 Welcome to ${knowledge.businessName} Support Bot!`);
+console.log(`Welcome to ${knowledge.businessName} Support Bot!`);
 console.log(`Type your question below (type 'exit' to end the chat):`);
 
 rl.on('line', async (input) => {
   if (input.toLowerCase() === 'exit') {
-    rl.question("\n📝 Before you go, was this support helpful? (yes/no): ", (feedback) => {
+    rl.question("Before you go, was this support helpful? (yes/no): ", (feedback) => {
       if (feedback.toLowerCase() === "yes") {
         const userWallet = "0x123...abc";
         rewardUser(userWallet, 10);
       }
-      console.log(`\n👋 Goodbye! Thanks for chatting with ${knowledge.businessName} Support Bot!`);
+      console.log(`Goodbye! Thanks for chatting with ${knowledge.businessName} Support Bot!`);
       rl.close();
     });
     return;

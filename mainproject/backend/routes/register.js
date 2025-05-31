@@ -9,23 +9,27 @@ router.post("/", async (req, res) => {
   const { email, password, accountType = "PERSONAL" } = req.body;
 
   try {
-    // 1. Create Firebase Auth user
+    // 1. Create Firebase user thing
     const userRecord = await admin.auth().createUser({
       email,
       password,
     });
 
-    // 2. Add user to your database
     const newUser = await prisma.user.create({
       data: {
         email,
         accountType,
       },
     });
+    const existing = await prisma.user.findUnique({ where: { email } });
+    if (existing) {
+      return res.status(409).json({ error: "User already exists" });
+``  }
+
 
     res.json({ status: "ok", user: newUser });
   } catch (err) {
-    console.error("❌ Registration error:", err);
+    console.error("Registration error:", err);
     res.status(500).json({ error: "Registration failed" });
   }
 });

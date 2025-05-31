@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
       accountType: user.accountType,
     });
   } catch (err) {
-    console.error("❌ Login route error:", err);
+    console.error("Login route error:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 });

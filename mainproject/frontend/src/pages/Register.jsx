@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BCTPurchaseModal from "../components/BCTPurchaseModal";
@@ -29,6 +28,8 @@ export default function Register() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userPayload),
       });
+      const data = await res.json();
+      localStorage.setItem("registrationKey", data.registrationKey);
 
       if (accountType === "BUSINESS") {
         if (orgMode === "create") {

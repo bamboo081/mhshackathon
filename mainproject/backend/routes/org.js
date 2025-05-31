@@ -33,7 +33,7 @@ router.post("/register-org", async (req, res) => {
 
     res.json({ orgId: org.id, registrationKey });
   } catch (err) {
-    console.error("❌ Error creating org:", err);
+    console.error("Error creating org:", err);
     res.status(500).json({ error: "Could not create organization" });
   }
 });
@@ -91,7 +91,7 @@ app.post("/api/org-info", async (req, res) => {
 
     res.json({ org, members: memberList });
   } catch (err) {
-    console.error("❌ /api/org-info error:", err);
+    console.error("/api/org-info error:", err);
     res.status(500).json({ error: "Failed to fetch org info." });
   }
 });
@@ -116,7 +116,7 @@ app.post("/api/org-info", async (req, res) => {
 
     res.json({ status: "joined", orgId: org.id, userId: newUser.id });
   } catch (err) {
-    console.error("❌ Error joining org:", err);
+    console.error("Error joining org:", err);
     res.status(500).json({ error: "Could not join organization" });
   }
 });

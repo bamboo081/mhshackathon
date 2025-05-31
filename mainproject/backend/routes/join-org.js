@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 
     res.json({ status: "joined", orgName: org.name });
   } catch (err) {
-    console.error("❌ join-org error:", err);
+    console.error("join-org error:", err);
     res.status(500).json({ error: "Failed to join org" });
   }
 });

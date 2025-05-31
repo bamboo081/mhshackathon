@@ -43,7 +43,7 @@ router.get("/rag", async (req, res) => {
 
     res.json({ answer: response.content });
   } catch (err) {
-    console.error("❌ RAG error:", err);
+    console.error("RAG error:", err);
     res.status(500).json({ error: "RAG failed" });
   }
 });
