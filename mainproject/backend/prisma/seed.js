@@ -12,18 +12,18 @@ async function main() {
       {
         name: "TrainerBot",
         type: "Training",
-        description: "Trains new employees by simulating workflows and testing comprehension.",
+        description: "Trains new employees by giving them examples and testing how well they respond.",
       },
       {
         name: "TaskBot",
         type: "Automation",
-        description: "Performs repetitive tasks, like data entry and email parsing.",
+        description: "Performs repetitive tasks, like data entry and email analysis.",
       },
     ],
   });
 }
 
 main().then(() => {
-  console.log("✅ Seeded bots");
+  console.log("Seeded bots");
   process.exit(0);
 });
